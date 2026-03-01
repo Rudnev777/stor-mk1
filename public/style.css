@@ -1,0 +1,52 @@
+@import "style--root.css";
+
+@font-face {
+    font-family: 'PT Sans Caption';
+    src: url('font/PTSans-Caption.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+
+body{
+    font-family: 'PT Sans Caption';
+    font-size: 16px;
+    background-color: var(--background-color-html);
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+
+}
+
+/*body::before{*/
+/*    display: inline-block;*/
+/*    content: "";*/
+/*    position: absolute;*/
+/*    height: 100%;*/
+/*    width: 100%;*/
+/*    background-image: url("image/titleImg.png");*/
+/*    background-repeat: no-repeat;*/
+/*    background-size: contain;*/
+/*    background-position: right;*/
+/*    opacity: 0.3;*/
+/*    z-index: -1;*/
+
+/*}*/
+
+
+main{
+    overflow-y: auto;
+}
+
+@media (max-width: 800px) {
+
+    /*body::before{*/
+    /*    height: 100%;*/
+    /*    width: 100%;*/
+    /*    background-size: contain;*/
+    /*    background-position: bottom ;*/
+    /*}*/
+
+}

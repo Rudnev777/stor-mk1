@@ -1,0 +1,7 @@
+:root{
+    --background-color-html: #1A1A1A;
+    --background-color-card: #4D4D4D;
+    --background-color-ororange: linear-gradient(90deg, rgba(251, 190, 59, 1) 0%, rgba(245, 161, 62, 1) 100%);
+    --border--radius: 5000px;
+    --border--radius--card: 16px;
+}
