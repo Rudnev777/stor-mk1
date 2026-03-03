@@ -10,6 +10,26 @@ header{
     border-radius: var(--border--radius);
 }
 
+.header--title--section{
+
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.header--back{
+    font-size: 3rem;
+    color: black;
+
+    text-decoration: none;
+
+  /* не понял зачем тут flex*/
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
 .header--title{
     font-size: 3rem;
     justify-self: center;

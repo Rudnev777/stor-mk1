@@ -1,0 +1,31 @@
+
+@import "style--root.css";
+
+.product--section{
+    display: grid;
+    grid-template-columns:0.8fr 1fr;
+    gap: 2rem;
+}
+
+.product--content{
+    background-color: var(--background-color-card);
+    display: flex;
+    flex-direction: column;
+    border-radius: var(--border--radius--card);
+}
+
+.product--button--buy{
+
+    font-size: 2rem;
+    width: 20%;
+    grid-area: button-buy;
+    background: var(--background-color-ororange);
+    border-radius: var(--border--radius);
+}
+
+.product--page--img{
+    object-fit: cover;
+    background-color: white;
+    width: 100%;
+    border-radius: var(--border--radius--card);
+}

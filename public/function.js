@@ -1,24 +1,24 @@
-function createElementBody(){
-    const body = document.querySelector("body");
-    let header = document.createElement("header");
-    let main = document.createElement("main");
-    body.append( header, main);
-    const head = document.querySelector("head");
-    let css = document.createElement("link");
+import {Product} from "./class/product.js";
 
-    css.rel = "stylesheet";
-    css.href = "style.css";
-
-    head.append(css);
-}
-
-function createHeader(){
+export function createHeader(){
     const header = document.querySelector("header");
-
+    let header_title_section = document.createElement("div");
+    header_title_section.classList.add("header--title--section");
     let header_title = document.createElement("h1");
     header_title.classList.add("header--title");
     header_title.textContent = "StoreAuto";
+    header_title_section.append(header_title);
+    // {потом посмотреть проверку
+    const pathh = window.location.pathname;
 
+    if (pathh !== '/' && pathh !== '/index.html' && !pathh.endsWith('index.html')) {
+        let header_back = document.createElement("a");
+        header_back.textContent = "←";
+        header_back.href = "index.html"; // должен переводить на страницу назад а не неглавную потом переделать
+        header_back.classList.add("header--back");
+        header_title_section.prepend(header_back);
+    }
+    // потом посмотреть проверку}
     let header_content_controller = document.createElement("nav")
     header_content_controller.classList.add("header--controller--list")
 
@@ -43,7 +43,7 @@ function createHeader(){
     header_search.append(header_search_img);
 
     header_content_controller.append(header_basket, header_profile ,header_menu);
-    header.append(header_title, header_content_controller, header_search);
+    header.append(header_title_section, header_content_controller, header_search);
 
 
     const head = document.querySelector("head");
@@ -54,54 +54,9 @@ function createHeader(){
 
     head.append(css);
 }
-createElementBody();
-createHeader();
 
 
-
-
-
-
-class Product{
-     id;
-     title;
-     price;
-     img_url;
-    constructor(element){
-        this.id = element.id;
-        this.title = element.title;
-        this.price = element.price;
-        this.img_url = element.image;
-    }
-    createCard(){
-        const head = document.querySelector("head");
-        let css = document.createElement("link");
-
-        css.rel = "stylesheet";
-        css.href = "style--card.css";
-
-        head.append(css);
-
-
-        let card = document.createElement("div");
-        card.classList.add("card");
-        let titleHTML = document.createElement("h1");
-        titleHTML.textContent = this.title;
-        titleHTML.classList.add("card--title");
-        let priceHTML = document.createElement("span");
-        priceHTML.textContent = this.price;
-        priceHTML.classList.add("card--price");
-        let imgHTML = document.createElement("img");
-        imgHTML.src = "image/" + this.img_url;
-        imgHTML.classList.add("card--img");
-        let btn_buy = document.createElement("button");
-        btn_buy.textContent = "Купить";
-        btn_buy.classList.add("card--button--buy");
-        card.append(titleHTML, priceHTML, imgHTML, btn_buy);
-        return card;
-    }
-}
-async function loadData() {
+export async function loadData() {
     const API_URL = '/api/users';
     const response = await fetch(API_URL);
     const data = await response.json();
@@ -118,8 +73,26 @@ async function loadData() {
 
 }
 
+export async function ProductPageID() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('id');
+    const API_URL_ID = `/api/product/${productId}`;
+
+    const response = await fetch(API_URL_ID);
+    const el = await response.json();
+    let product = new Product(el);
+    // потом поменять получение элемента или на name или на id
+    let img = document.querySelector("#product-img")
+    let title = document.querySelector("#product-title")
+    let price = document.querySelector("#product-price")
+
+    img.src = "image/" + product.img_url;
+    title.textContent = product.title;
+    price.textContent = product.price;
+
+    main.appendChild(imgHTML);
+}
 
 
 
 
-loadData();
