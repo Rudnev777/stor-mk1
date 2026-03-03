@@ -3,23 +3,15 @@ import {Pool} from 'pg';
 
 
 const app = express();
-const port = 3000;
+const port = process.env.PORT || 3000;
 
-// const db = await mysql.createConnection({
-//     host: 'localhost',
-//     user: 'root',
-//     password: 'misha2005',
-//     database: 'store'
-// });
 
 const db = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: 'misha2005',
-    database: 'store',
-    port: 5432,
+    connectionString: process.env.DATABASE_URL,
+    ssl: {
+        rejectUnauthorized: false
+    }
 });
-
 
 app.use(express.static('public'));
 
